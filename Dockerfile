@@ -59,4 +59,15 @@ RUN echo '#!/bin/sh' > entrypoint.sh && \
     chmod +x entrypoint.sh
 
 # 🌐 Portas padrão (TCP + UDP)
-EXPOSE
+EXPOSE 14159/tcp
+EXPOSE 14159/udp
+
+# 💾 Volume persistente — precisa ser montado externamente!
+# Use EasyPanel → Volumes → /home/necesse/.config/Necesse/saves
+VOLUME ["/home/necesse/.config/Necesse/saves"]
+
+# 🔧 Variável padrão do mundo
+ENV WORLD_NAME=default
+
+# 🏁 Executa o servidor
+CMD ["./entrypoint.sh"]
